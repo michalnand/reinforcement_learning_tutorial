@@ -13,7 +13,7 @@ class Agent():
                     epsilon_start   = 1.0,
                     epsilon_end     = 0.1,
 
-                    gamma               = 0.999,
+                    gamma               = 0.99,
                     replay_buffer_size  = 8192 ):
 
         self.env    = env

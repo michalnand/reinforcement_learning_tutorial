@@ -5,13 +5,7 @@ import gym
 
 import models
 
-gym.envs.register(
-    id='MountainCarCustom-v0',
-    entry_point='gym.envs.classic_control:MountainCarEnv',
-    max_episode_steps=4096      # MountainCar-v0 uses 200
-)
-
-env = gym.make("MountainCarCustom-v0")
+env = gym.make("LunarLander-v2")
 
 
 class SetRewardRange(gym.RewardWrapper):
@@ -20,14 +14,16 @@ class SetRewardRange(gym.RewardWrapper):
 
     def step(self, action):
         obs, reward, done, info = self.env.step(action)
-        if reward < 0:
-            reward = -0.001
 
-        if done: 
+        reward = reward / 10.0
+
+        if reward < -1.0:
+            reward = -1.0
+
+        if reward > 1.0:
             reward = 1.0
-        
-        return obs, reward, [done, done], info
 
+        return obs, reward, [done, done], info
 
 env = SetRewardRange(env)
 env.reset()
@@ -37,7 +33,7 @@ actions_count   = env.action_space.n
 
     
 model = models.ModelDQN(obs, actions_count, [64, 64])
-agent = dqn.Agent(env, model, gamma = 0.999)
+agent = dqn.Agent(env, model)
 
 
 for iteration in range(1000000):
