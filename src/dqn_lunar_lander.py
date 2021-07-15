@@ -37,7 +37,7 @@ for iteration in range(500000):
         env.render()
 
 #save model
-#agent.save("./models/")
+agent.save("./models/")
 '''
 
 #load model

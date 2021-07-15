@@ -6,6 +6,35 @@ short tutorial for basic deep reinforcement learning
 
 ![animation](doc/lunar_lander.gif)
 
+## install and run 
+
+### dependences : 
+```bash
+pip3 install -r requirements.txt
+```
+
+
+### run pretrained agent : 
+```bash
+cd src
+python3 dqn_lunar_lander.py
+```
+
+### for training from scratch uncomment in dqn_lunar_lander.py and run:
+```python
+#train
+for iteration in range(500000):
+    agent.main()
+
+    if iteration%256 == 0:
+        print("iterations = ", iteration, " score = ", agent.score_episode)
+        env.render()
+
+#save model
+agent.save("./models/")
+```
+
+
 ## dqn - discrete action space
 
 ![dqn](doc/dqn.png)
@@ -33,3 +62,8 @@ short tutorial for basic deep reinforcement learning
 - critic output layer init range <-0.003, 0.003>
 
 ![dqn](doc/modelddpg.png)
+
+
+## TODO 
+
+- DDPG still not running
