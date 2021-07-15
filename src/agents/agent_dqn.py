@@ -122,7 +122,7 @@ class AgentDQN():
 
         q_max, _    = torch.max(q_values_next, axis=1)
         q_new       = rewards_t + self.gamma*(1.0 - dones_t)*q_max
-        q_target[range(self.batch_size), actions_t] = q_new
+        q_target[range(self.batch_size), actions_t.type(torch.long)] = q_new
 
         #MSE loss
         self.optimizer.zero_grad()

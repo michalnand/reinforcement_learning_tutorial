@@ -7,12 +7,12 @@ class AgentDDPG():
                     learning_rate_actor     = 0.0001,
                     learning_rate_critic    = 0.0002,
                     update_frequency        = 4,
-                    tau                     = 0.001,
+                    tau                     = 0.01,
                     batch_size              = 32,
 
                     epsilon_decay       = 0.99999,
                     epsilon_start       = 1.0,
-                    epsilon_end         = 0.1,
+                    epsilon_end         = 0.2,
 
                     gamma                   = 0.99,
                     replay_buffer_size      = 8192 ):
@@ -116,14 +116,16 @@ class AgentDDPG():
         state_t, state_next_t, actions_t, rewards_t, dones_t = self._get_random_batch(self.batch_size)
 
         #predict next values
-        action_next_t   = self.model_actor_target.forward(state_next_t).detach()
-        value_next_t    = self.model_critic_target.forward(state_next_t, action_next_t).detach()
+        action_next_t   = self.model_actor_target.forward(state_next_t)
+        value_next_t    = self.model_critic_target.forward(state_next_t, action_next_t)
 
         #critic loss, Q-learning and MSE loss
-        value_target    = rewards_t + self.gamma*dones_t*value_next_t
+        rewards_t       = rewards_t.unsqueeze(1)
+        dones_t         = dones_t.unsqueeze(1)
+        value_target    = rewards_t + self.gamma*(1.0 - dones_t)*value_next_t
         value_predicted = self.model_critic.forward(state_t, actions_t)
 
-        critic_loss     = ((value_target - value_predicted)**2)
+        critic_loss     = ((value_target.detach() - value_predicted)**2)
         critic_loss     = critic_loss.mean()
      
         #update critic

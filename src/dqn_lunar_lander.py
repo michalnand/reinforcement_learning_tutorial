@@ -42,7 +42,7 @@ agent.save("./models/")
 
 #load model
 agent.load("./models/")
-agent.epsilon = 0.1
+agent.epsilon = 0.02
 
 #show how's running
 while True:

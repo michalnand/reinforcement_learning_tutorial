@@ -28,7 +28,7 @@ env.reset()
 agent = AgentDDPG(env, ModelActor, ModelCritic)
 
 #train
-for iteration in range(500000):
+for iteration in range(1000000):
     agent.main()
 
     if iteration%256 == 0:
@@ -41,7 +41,7 @@ agent.save("./models/")
 
 #load model
 agent.load("./models/")
-agent.epsilon = 0.1
+agent.epsilon = 0.02
 
 #show how's running
 while True:
