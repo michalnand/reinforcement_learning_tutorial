@@ -7,15 +7,15 @@ class AgentDDPG():
                     learning_rate_actor     = 0.0001,
                     learning_rate_critic    = 0.0002,
                     update_frequency        = 4,
-                    tau                     = 0.01,
-                    batch_size              = 32,
+                    tau                     = 0.001,
+                    batch_size              = 64, 
 
-                    epsilon_decay       = 0.99999,
+                    epsilon_decay       = 0.9999,
                     epsilon_start       = 1.0,
                     epsilon_end         = 0.2,
-
+ 
                     gamma                   = 0.99,
-                    replay_buffer_size      = 8192 ):
+                    replay_buffer_size      = 16384 ):
        
 
         self.env    = env
@@ -150,14 +150,6 @@ class AgentDDPG():
         for target_param, param in zip(self.model_critic_target.parameters(), self.model_critic.parameters()):
             target_param.data.copy_((1.0 - self.tau)*target_param.data + self.tau*param.data)
 
-
-    def choose_action_e_greedy(self, q_values, epsilon):
-        result = numpy.argmax(q_values)
-        
-        if numpy.random.random() < epsilon:
-            result = numpy.random.randint(len(q_values))
-        
-        return result
 
     def _get_random_batch(self, batch_size):
         indices     = numpy.random.randint(0, self.replay_buffer_size - 1, size=batch_size)

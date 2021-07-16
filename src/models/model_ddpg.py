@@ -44,10 +44,10 @@ class ModelCritic(torch.nn.Module):
     def __init__(self, input_shape, outputs_count):
         super(ModelCritic, self).__init__()
 
-        self.l0     = torch.nn.Linear(input_shape[0] + outputs_count, 64)
+        self.l0     = torch.nn.Linear(input_shape[0] + outputs_count, 128)
         self.act0   = torch.nn.ReLU()
         
-        self.l1     = torch.nn.Linear(64, 64)
+        self.l1     = torch.nn.Linear(128, 64)
         self.act1   = torch.nn.ReLU()
         
         self.l2     = torch.nn.Linear(64, 1)

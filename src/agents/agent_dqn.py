@@ -14,7 +14,7 @@ class AgentDQN():
                     epsilon_end         = 0.1,
 
                     gamma               = 0.99,
-                    replay_buffer_size  = 8192 ):
+                    replay_buffer_size  = 16384 ):
 
         self.env    = env
 
@@ -65,7 +65,7 @@ class AgentDQN():
             self.epsilon = self.epsilon*self.epsilon_decay
         
         #obtain q-values
-        obs_t       = torch.from_numpy(self.observation).unsqueeze(0)
+        obs_t       = torch.from_numpy(self.observation).unsqueeze(0).float()
         q_values    = self.model(obs_t)
         q_values    = q_values.squeeze(0).detach().to("cpu").numpy()
 

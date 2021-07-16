@@ -2,3 +2,4 @@ numpy
 torch
 gym[all]
 box2d-py
+gym-anytrading

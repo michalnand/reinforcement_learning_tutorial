@@ -28,8 +28,8 @@ env.reset()
 agent = AgentDQN(env, ModelDQN)
 
 '''
-#train
-for iteration in range(500000):
+#train, uncomment for run training
+for iteration in range(1000000):
     agent.main()
 
     if iteration%256 == 0:

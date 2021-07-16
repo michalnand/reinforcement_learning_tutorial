@@ -2,8 +2,8 @@ import time
 import gym
 
 
-from agents.agent_ddpg  import *
-from models.model_ddpg  import *
+from agents.agent_ddpg      import *
+from models.model_ddpg      import *
 
 
 #environment wrapper, reward scaling
@@ -23,11 +23,11 @@ env = gym.make("LunarLanderContinuous-v2")
 env = SetRewardRange(env)
 env.reset()
 
-
 #create DDPG agent
 agent = AgentDDPG(env, ModelActor, ModelCritic)
 
-#train
+'''
+#train, uncomment for run training
 for iteration in range(1000000):
     agent.main()
 
@@ -37,11 +37,11 @@ for iteration in range(1000000):
 
 #save model
 agent.save("./models/")
-
+'''
 
 #load model
 agent.load("./models/")
-agent.epsilon = 0.02
+agent.epsilon = 0.2
 
 #show how's running
 while True:
