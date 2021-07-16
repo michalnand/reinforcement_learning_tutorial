@@ -10,7 +10,8 @@ class ModelDQNSeq(torch.nn.Module):
        
         torch.nn.init.xavier_uniform_(self.output.weight)
         torch.nn.init.zeros_(self.output.bias)
-        
+    
+    #state shape = (batch, sequence, features)
     def forward(self, state):
         y, _ = self.lstm(state)
 
