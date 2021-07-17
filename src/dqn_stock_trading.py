@@ -1,8 +1,8 @@
 import gym
 import gym_anytrading
 
-from agents.agent_dqn       import *
-from models.model_dqn_seq   import *
+from agents.agent_dqn               import *
+from models.stock_model_dqn_seq     import *
 
 #create environment
 env = gym.make("forex-v0")

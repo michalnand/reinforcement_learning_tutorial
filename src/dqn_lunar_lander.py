@@ -2,8 +2,8 @@ import time
 import gym
 
 
-from agents.agent_dqn  import *
-from models.model_dqn  import *
+from agents.agent_dqn               import *
+from models.lunar_lander_model_dqn  import *
 
 
 #environment wrapper, reward scaling
@@ -37,11 +37,11 @@ for iteration in range(1000000):
         env.render()
 
 #save model
-agent.save("./models/")
+agent.save("./models/trained/lunar_lander_")
 '''
 
 #load model
-agent.load("./models/")
+agent.load("./models/trained/lunar_lander_")
 agent.epsilon = 0.02
 
 #show how's running

@@ -13,6 +13,14 @@ short tutorial for basic deep reinforcement learning
 pip3 install -r requirements.txt
 ```
 
+**for line follower example install : 
+(requires also Shapely Pybullet OpenCV)**
+
+```
+git clone https://github.com/nplan/gym-line-follower.git
+pip3 install -e gym-line-follower
+```
+
 
 ### run pretrained agent : 
 ```bash
@@ -35,7 +43,7 @@ agent.save("./models/")
 ```
 
 
-## dqn - discrete action space
+## Lunar lander, dqn - discrete action space
 
 ![dqn](doc/dqn.png)
 
@@ -49,7 +57,7 @@ agent.save("./models/")
 
 
 
-## ddpg - continuous action space
+## Lunar lander, ddpg - continuous action space
 
 ![dqn](doc/ddpg.png)
 
@@ -63,7 +71,10 @@ agent.save("./models/")
 
 ![dqn](doc/modelddpg.png)
 
+## Line follower, ddpg - continuous action space
 
-## TODO 
+example for line follower controll robot
+- observation : 8 last line positons
+- action      : 2 outputs for motors controll
+- DDPG with LSTM
 
-- DDPG still not running
