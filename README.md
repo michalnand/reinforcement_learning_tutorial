@@ -13,9 +13,7 @@ short tutorial for basic deep reinforcement learning
 pip3 install -r requirements.txt
 ```
 
-**for line follower example install : 
-(requires also Shapely Pybullet OpenCV)**
-
+**for line follower example install : (requires - Shapely Pybullet OpenCV)**
 ```
 git clone https://github.com/nplan/gym-line-follower.git
 pip3 install -e gym-line-follower
@@ -74,12 +72,15 @@ agent.save("./models/")
 ## Line follower, ddpg - continuous action space
 
 example for line follower controll robot
-- observation : 8 line positons [x, y]
+- observation : 8 line positions [x, y]
 - action      : 2 outputs for motors controll
-- DDPG with LSTM or FC model
+- DDPG with LSTM (GRU) or FC model
 
 ![dqn](doc/line_follower.gif)
 
+### reccurent neural network model
+
+![dqn](doc/rnnmodel.png)
 
 
 # TODO
