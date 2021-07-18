@@ -5,6 +5,8 @@ class ModelActor(torch.nn.Module):
     def __init__(self, input_shape, outputs_count):
         super(ModelActor, self).__init__()
 
+        self.flatten= torch.nn.Flatten()
+
         self.l0     = torch.nn.Linear(input_shape[0], 64)
         self.act0   = torch.nn.ReLU()
         
@@ -26,7 +28,9 @@ class ModelActor(torch.nn.Module):
         
 
     def forward(self, state):
-        x = self.l0(state)
+        s = self.flatten(state)
+
+        x = self.l0(s)
         x = self.act0(x)
 
         x = self.l1(x)
@@ -43,6 +47,8 @@ class ModelActor(torch.nn.Module):
 class ModelCritic(torch.nn.Module):
     def __init__(self, input_shape, outputs_count):
         super(ModelCritic, self).__init__()
+
+        self.flatten= torch.nn.Flatten()
 
         self.l0     = torch.nn.Linear(input_shape[0] + outputs_count, 128)
         self.act0   = torch.nn.ReLU()
@@ -64,7 +70,9 @@ class ModelCritic(torch.nn.Module):
         
 
     def forward(self, state, action):
-        x = torch.cat([state, action], dim=1)
+        s = self.flatten(state)
+
+        x = torch.cat([s, action], dim=1)
 
         x = self.l0(x)
         x = self.act0(x)
