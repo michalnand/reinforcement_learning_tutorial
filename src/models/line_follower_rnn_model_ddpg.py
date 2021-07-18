@@ -5,7 +5,7 @@ class ModelActor(torch.nn.Module):
     def __init__(self, input_shape, outputs_count):
         super(ModelActor, self).__init__()
 
-        self.lstm       = torch.nn.LSTM(input_shape[1], 64, batch_first = True)
+        self.gru        = torch.nn.GRU(input_shape[1], 64, batch_first = True)
         self.output     = torch.nn.Linear(64, outputs_count)
         self.act        = torch.nn.Tanh()
        
@@ -14,7 +14,7 @@ class ModelActor(torch.nn.Module):
     
     #state shape = (batch, sequence, features)
     def forward(self, state):
-        y, _ = self.lstm(state)
+        y, _ = self.gru(state)
 
         #take last seq output
         y = y[:,-1,:]
@@ -34,7 +34,7 @@ class ModelCritic(torch.nn.Module):
 
         self.flatten= torch.nn.Flatten()
 
-        self.lstm   = torch.nn.LSTM(input_shape[1]  + outputs_count, 128, batch_first = True)
+        self.gru    = torch.nn.GRU(input_shape[1]  + outputs_count, 128, batch_first = True)
 
         self.l0     = torch.nn.Linear(128, 64)
         self.act0   = torch.nn.ReLU()
@@ -58,7 +58,7 @@ class ModelCritic(torch.nn.Module):
         #cat action with state        
         x = torch.cat([state, action_], dim=2)
 
-        x, _ = self.lstm(x)
+        x, _ = self.gru(x)
 
         #take last seq output
         x = x[:,-1,:]
