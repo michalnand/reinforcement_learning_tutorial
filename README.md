@@ -86,7 +86,7 @@ example for line follower controll robot
 - small GRU or LSTM (64 .. 128 units)
 - folowed by single linear layer with **tanh** activation
 - suitable for most simple robotics controll problems
-- [rnn model code](src/modelsline_follower_rnn_model_ddpg.py)
+- [rnn model code](src/models/line_follower_rnn_model_ddpg.py)
 
 
 ![dqn](doc/rnnmodel.png)
