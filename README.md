@@ -50,6 +50,8 @@ agent.save("./models/")
 - 3 layers
 - ReLU activation
 - xavier weight init, zero bias
+- [model code](src/dqn_lunar_lander.py)
+
 
 ![model_dqn](doc/modeldqn.png)
 
@@ -66,6 +68,7 @@ agent.save("./models/")
 - xavier weight init, zero bias
 - actor output layer init range <-0.3, 0.3>, with tanh
 - critic output layer init range <-0.003, 0.003>
+- [model code](src/ddpg_line_follower.py)
 
 ![dqn](doc/modelddpg.png)
 
@@ -80,8 +83,13 @@ example for line follower controll robot
 
 ### reccurent neural network model
 
-![dqn](doc/rnnmodel.png)
+- small GRU or LSTM (64 .. 128 units)
+- folowed by single linear layer with tanh activation
+- suitable for most simple robotics controll problems
+- [rnn model code](src/modelsline_follower_rnn_model_ddpg.py)
 
+
+![dqn](doc/rnnmodel.png)
 
 # TODO
 
