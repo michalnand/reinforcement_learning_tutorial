@@ -7,7 +7,7 @@ class ModelActor(torch.nn.Module):
 
         self.flatten= torch.nn.Flatten()
 
-        self.l0     = torch.nn.Linear(input_shape[0], 64)
+        self.l0     = torch.nn.Linear(input_shape[0]*input_shape[1], 64)
         self.act0   = torch.nn.ReLU()
         
         self.l1     = torch.nn.Linear(64, 64)
@@ -50,7 +50,7 @@ class ModelCritic(torch.nn.Module):
 
         self.flatten= torch.nn.Flatten()
 
-        self.l0     = torch.nn.Linear(input_shape[0] + outputs_count, 128)
+        self.l0     = torch.nn.Linear(input_shape[0]*input_shape[1] + outputs_count, 128)
         self.act0   = torch.nn.ReLU()
         
         self.l1     = torch.nn.Linear(128, 64)
