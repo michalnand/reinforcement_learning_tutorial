@@ -74,7 +74,15 @@ agent.save("./models/")
 ## Line follower, ddpg - continuous action space
 
 example for line follower controll robot
-- observation : 8 last line positons
+- observation : 8 line positons [x, y]
 - action      : 2 outputs for motors controll
-- DDPG with LSTM
+- DDPG with LSTM or FC model
+
+![dqn](doc/line_follower.gif)
+
+
+
+# TODO
+
+- LSTM for line follower still not working
 
