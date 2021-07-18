@@ -93,5 +93,4 @@ example for line follower controll robot
 
 # TODO
 
-- LSTM for line follower still not working
-
+None

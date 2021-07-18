@@ -28,7 +28,7 @@ class Wrapper(gym.Wrapper):
         return obs
 
 #create environment
-env = gym.make("LineFollower-v0", nb_cam_pts=8, gui=False)
+env = gym.make("LineFollower-v0", nb_cam_pts=8, gui=True)
 env = Wrapper(env)
 obs = env.reset()
 
@@ -36,6 +36,7 @@ obs = env.reset()
 #create DDPG agent
 agent = AgentDDPG(env, ModelActor, ModelCritic)
 
+'''
 #train, uncomment for run training
 for iteration in range(200000):
     agent.main()
@@ -45,8 +46,9 @@ for iteration in range(200000):
 
 #save model
 agent.save("./models/trained/line_follower_rnn_")
-
 '''
+
+
 #load model
 agent.load("./models/trained/line_follower_rnn_")
 agent.epsilon = 0.2
@@ -54,4 +56,3 @@ agent.epsilon = 0.2
 #show how's running
 while True:
     agent.main()
-'''
